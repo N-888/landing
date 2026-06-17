@@ -17,7 +17,7 @@
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
@@ -52,7 +52,7 @@
         }
 
         .section {
-            padding: 80px 20px;
+            padding: 50px 20px;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -181,17 +181,29 @@
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             border-radius: 20px;
-            padding: 50px;
-            margin-top: 60px;
+            padding: 40px;
+            margin-top: 40px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 20px;
         }
 
         .testimonial blockquote {
-            font-size: 1.3em;
+            font-size: 1.2em;
             font-style: italic;
             max-width: 700px;
-            margin: 0 auto 20px;
-            line-height: 1.8;
+            margin: 0 auto 15px;
+            line-height: 1.6;
         }
 
         .testimonial cite {
@@ -199,11 +211,32 @@
             opacity: 0.9;
         }
 
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: white;
+        }
+
         .cta {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
-            padding: 80px 20px;
+            padding: 50px 20px;
         }
 
         .cta h2 {
@@ -376,14 +409,60 @@
 
 <section class="section">
     <div class="testimonial">
-        <blockquote>
-            «Раньше я тратила каждый понедельник на оформление счетов. 
-            Теперь я жму одну кнопку и иду пить кофе. А ещё — у нас наконец-то 
-            все документы в едином фирменном стандарте и выглядят красиво.»
-        </blockquote>
-        <cite>— Мария, владелец интернет-магазина</cite>
+        <div class="testimonial-carousel" id="testimonialCarousel">
+            <div class="testimonial-slide">
+                <blockquote>
+                    «Раньше я тратила каждый понедельник на оформление счетов. 
+                    Теперь я жму одну кнопку и иду пить кофе. А ещё — у нас наконец-то 
+                    все документы в едином фирменном стандарте и выглядят красиво. Без ошибок!»
+                </blockquote>
+                <cite>— Мария, владелец интернет-магазина «ТехноШоп»</cite>
+            </div>
+            <div class="testimonial-slide">
+                <blockquote>
+                    «Я.owner строительной фирмы. Раньше сметы занимали целый день. 
+                    Теперь — 20 минут. Заказчики в восторге от оформления, говорят — 
+                    сразу видно профессионалов. Рекомендую!»
+                </blockquote>
+                <cite>— Алексей,.owner строительной компании «СтройДом»</cite>
+            </div>
+            <div class="testimonial-slide">
+                <blockquote>
+                    «Как IT-компания, мы делаем много договоров. 
+                    Автоматизация сэкономила нам 10 часов в неделю. 
+                    Клиенты получают красивые документы — и мы тоже. Спасибо!»
+                </blockquote>
+                <cite>— Дмитрий, руководитель IT-компании «Цифровые решения»</cite>
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <button class="carousel-dot active" onclick="showSlide(0)"></button>
+            <button class="carousel-dot" onclick="showSlide(1)"></button>
+            <button class="carousel-dot" onclick="showSlide(2)"></button>
+        </div>
     </div>
 </section>
+
+<script>
+let currentSlide = 0;
+const totalSlides = 3;
+
+function showSlide(index) {
+    currentSlide = index;
+    const carousel = document.getElementById('testimonialCarousel');
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    
+    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+}
+
+// Автопереключение каждые 5 секунд
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}, 5000);
+</script>
 
 <section class="cta" id="contacts">
     <div class="price-tag">От 5 000 ₽</div>

@@ -459,11 +459,15 @@ function showSlide(index) {
     });
 }
 
-// Автопереключение каждые 5 секунд
+// Автопереключение каждые 10 секунд
 setInterval(() => {
     currentSlide = (currentSlide + 1) % totalSlides;
     showSlide(currentSlide);
-}, 5000);
+}, 10000);
+
+function showConsent() {
+    document.getElementById('consentModal').style.display = 'flex';
+}
 </script>
 
 <section class="cta" id="contacts">
@@ -471,8 +475,24 @@ setInterval(() => {
     <h2>Хватит тратить время на рутину</h2>
     <p>Напишите мне — расскажу, как это будет работать именно в вашем случае. 
        Консультация бесплатно, даже если решите не заказывать.</p>
-    <a href="https://t.me/Tpomoschnik" class="btn">Написать в Telegram</a>
+    <a href="https://t.me/Tpomoschnik" class="btn" onclick="showConsent()">Написать в Telegram</a>
 </section>
+
+<div id="consentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 40px; border-radius: 15px; max-width: 600px; margin: 20px; text-align: center;">
+        <h3 style="margin-top: 0; color: #333;">Важное уведомление</h3>
+        <p style="color: #555; line-height: 1.6;">
+            Нажимая кнопку «Написать в Telegram» или联系ing with me by any other means, you автоматически подтверждаете своё согласие с 
+            <a href="oferta.html" target="_blank">Условиями Оферты</a> и 
+            <a href="privacy.html" target="_blank">Соглашением о Конфиденциальности</a> 
+            в соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».
+        </p>
+        <button onclick="document.getElementById('consentModal').style.display='none'" 
+                style="background: #667eea; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; margin-top: 20px;">
+            Понятно
+        </button>
+    </div>
+</div>
 
 <footer>
     <p>Сделано с заботой о вашем времени • 2026</p>
@@ -480,6 +500,14 @@ setInterval(() => {
         Telegram: <a href="https://t.me/Tpomoschnik" style="color: inherit;">@Tpomoschnik</a> • 
         Телефон: +7-925-104-10-73 • 
         Email: mamambell@gmail.com
+    </p>
+    <p style="margin-top: 15px; font-size: 12px; opacity: 0.6;">
+        <a href="oferta.html" style="color: inherit;">Публичная оферта</a> • 
+        <a href="privacy.html" style="color: inherit;">Соглашение о конфиденциальности</a>
+    </p>
+    <p style="margin-top: 10px; font-size: 11px; opacity: 0.5;">
+        Все документы размещены на публичных площадках исключительно с разрешения клиентов. 
+        Согласие на обработку персональных данных получено в соответствии с Федеральным законом № 152-ФЗ.
     </p>
 </footer>
 
